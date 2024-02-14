@@ -1,0 +1,35 @@
+{
+	"name": "prompt-mixer-ollama-connector",
+	"version": "1.1.0",
+	"description": "",
+	"type": "module",
+	"main": "main.js",
+	"scripts": {
+		"dev": "node esbuild.config.mjs",
+		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+		"version": "node version-bump.mjs && git add manifest.json versions.json",
+		"lint": "eslint '**/*.{js,ts}' --quiet",
+		"lint:fix": "eslint '**/*.{js,ts}' --fix",
+		"format": "prettier '**/*.{js,ts,json,md}' --write",
+		"format:check": "prettier '**/*.{js,ts,json,md}' --check"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^16.11.6",
+		"@typescript-eslint/eslint-plugin": "5.29.0",
+		"@typescript-eslint/parser": "5.29.0",
+		"builtin-modules": "3.3.0",
+		"esbuild": "0.17.3",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.1.3",
+		"prettier": "^3.2.5",
+		"tslib": "2.4.0",
+		"typescript": "4.7.4"
+	},
+	"dependencies": {
+		"ollama": "^0.4.4"
+	}
+}
