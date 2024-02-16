@@ -28,6 +28,14 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: Configure Git
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/PromptMixerDev/prompt-mixer-ollama-connector.git
+
     - name: Bump version and push tag
       run: |
         npm run version
