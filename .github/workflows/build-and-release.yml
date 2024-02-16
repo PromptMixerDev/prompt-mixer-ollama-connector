@@ -23,7 +23,7 @@ jobs:
         node-version: '21'
 
     - name: Install dependencies
-      run: npm run install
+      run: npm ci
 
     - name: Build
       run: npm run build
