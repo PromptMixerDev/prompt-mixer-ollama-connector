@@ -11,39 +11,35 @@ on:
         required: true
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '21'
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '21'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Run build
-        run: npm run build
+    - name: Build
+      run: npm run build
 
-      - name: Bump version and update files
-        run: npm run version
-
-      - name: Commit changes
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git commit -m "Automated version bump" -a
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          tag_name: ${{ github.event.inputs.releaseVersion }}
-          release_name: Release ${{ github.event.inputs.releaseVersion }}
-          draft: false
-          prerelease: false
-          body: "New release ${{ github.event.inputs.releaseVersion }}"
+    - name: Bump version and push tag
+      run: |
+        npm run version
+        git push --follow-tags origin main
+        
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
