@@ -38,7 +38,6 @@ jobs:
         draft: false
         prerelease: false
 
-    # Assuming main.js is in the dist/ directory after the build step
     - name: Upload Release Asset
       uses: actions/upload-artifact@v3
       with:
