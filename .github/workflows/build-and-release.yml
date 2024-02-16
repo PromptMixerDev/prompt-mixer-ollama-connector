@@ -27,7 +27,7 @@ jobs:
 
     - name: Build
       run: npm run build
-        
+
     - name: Create Release
       id: create_release
       uses: ncipollo/release-action@v1
@@ -37,3 +37,10 @@ jobs:
         name: Release ${{ github.event.inputs.releaseVersion || github.ref_name }}
         draft: false
         prerelease: false
+
+    # Assuming main.js is in the dist/ directory after the build step
+    - name: Upload Release Asset
+      uses: actions/upload-artifact@v3
+      with:
+        name: main.js
+        path: main.js
