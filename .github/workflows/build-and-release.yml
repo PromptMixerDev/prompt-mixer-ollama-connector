@@ -30,11 +30,10 @@ jobs:
         
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      uses: ncipollo/release-action@v1
       with:
-        tag_name: ${{ github.event.inputs.releaseVersion }}
-        release_name: Release ${{ github.event.inputs.releaseVersion }}
+        token: ${{ secrets.GH_TOKEN }}
+        tag: ${{ github.event.inputs.releaseVersion || github.ref_name }}
+        name: Release ${{ github.event.inputs.releaseVersion || github.ref_name }}
         draft: false
         prerelease: false
