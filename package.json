@@ -13,8 +13,8 @@
 		"format": "prettier '**/*.{js,ts,json,md}' --write",
 		"format:check": "prettier '**/*.{js,ts,json,md}' --check"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": ["LLM", "Ollama", "Connector", "Prompt Mixer", "Prompts"],
+	"author": "Prompt Mixer",
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
@@ -30,6 +30,6 @@
 		"typescript": "4.7.4"
 	},
 	"dependencies": {
-		"ollama": "^0.4.4"
+		"ollama": "^0.4.6"
 	}
 }
