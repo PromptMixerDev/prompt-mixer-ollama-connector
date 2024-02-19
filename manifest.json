@@ -3,7 +3,7 @@
 	"name": "Ollama Connector",
 	"version": "1.0.0",
 	"minAppVersion": "0.1.0",
-	"description": "",
+	"description": "Connector for model installed by Ollama",
 	"author": "Prompt Mixer",
 	"authorUrl": "",
 	"fundingUrl": "",
