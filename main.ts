@@ -1,4 +1,5 @@
 import ollama from 'ollama';
+import { config } from './config';
 
 interface Message {
 	role: string;
@@ -63,4 +64,4 @@ async function main(
 	}
 }
 
-export { main };
+export { main, config };
