@@ -10,7 +10,9 @@ This is a connector for [Prompt Mixer](https://www.promptmixer.dev/) that allows
 ## Installation
 To install:
 
-- In Prompt Mixer go to Settings > Connectors > Install Plugin
+- In Prompt Mixer go to Connectors > Ollama Connector > Install 
+
+For more information, see the [Prompt Mixer documentation](https://docs.promptmixer.dev/).
 
 ## Contributing
 Pull requests and issues welcome! Let me know if you have any problems using the connector or ideas for improvements.
