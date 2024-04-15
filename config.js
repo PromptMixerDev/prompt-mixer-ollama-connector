@@ -1,5 +1,5 @@
 export const config = {
-	connectorName: 'Ollama',
+	connectorName: 'Ollama Connector',
 	models: [
 		'gemma',
 		'llama2',
@@ -62,6 +62,7 @@ export const config = {
 		'notus',
 		'megadolphin',
 		'qwen',
+		'wizardlm2',
 	],
 	settings: [],
 	description:
