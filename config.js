@@ -62,6 +62,7 @@ export const config = {
 		'notus',
 		'megadolphin',
 		'qwen',
+		'wizardlm2',
 	],
 	settings: [],
 	description:
