@@ -71,6 +71,10 @@ export const config = {
 		'wizardlm2:7b',
 		'wizardlm2:70b',
 		'wizardlm2:8x22b',
+		'llama3',
+		'llama3:8b',
+		'llama3:text',
+		'llama3:70b-text',
 	],
 	settings: [],
 	description:
