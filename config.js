@@ -23,6 +23,8 @@ export const config = {
 		'wizardcoder',
 		'phind-codellama',
 		'phi',
+		'phi3',
+		'phi3:3.8b',
 		'llama2-chinese',
 		'nous-hermes',
 		'orca2',
