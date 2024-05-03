@@ -1,7 +1,7 @@
 {
 	"id": "prompt-mixer-ollama-connector",
 	"name": "Ollama Connector",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"minAppVersion": "0.1.0",
 	"description": "Connector for local LLM models installed by Ollama",
 	"author": "Prompt Mixer",
