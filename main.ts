@@ -1,9 +1,11 @@
 import ollama from 'ollama';
 import { config } from './config';
+import * as fs from 'fs';
 
 interface Message {
 	role: string;
 	content: string;
+	images?: Uint8Array[] | string[];
 }
 
 interface Completion {
@@ -31,18 +33,56 @@ const mapToResponse = (outputs: ChatCompletion[]): ConnectorResponse => {
 	};
 };
 
+function extractImageUrls(prompt: string): string[] {
+	const imageExtensions = ['.png', '.jpeg', '.jpg', '.webp', '.gif'];
+	// Updated regex to match both http and local file paths
+	const urlRegex =
+		/(https?:\/\/[^\s]+|[a-zA-Z]:\\[^:<>"|?\n]*|\/[^:<>"|?\n]*)/g;
+	const urls = prompt.match(urlRegex) || [];
+
+	return urls.filter((url) => {
+		const extensionIndex = url.lastIndexOf('.');
+		if (extensionIndex === -1) {
+			// If no extension found, return false.
+			return false;
+		}
+		const extension = url.slice(extensionIndex);
+		return imageExtensions.includes(extension.toLowerCase());
+	});
+}
+
+function encodeImage(imagePath: string): string {
+	const imageBuffer = fs.readFileSync(imagePath);
+	return Buffer.from(imageBuffer).toString('base64');
+}
+
 async function main(
 	model: string,
 	prompts: string[],
+	properties: Record<string, unknown>,
 ): Promise<ConnectorResponse> {
+	const { prompt, ...restProperties } = properties;
+	const systemPrompt = (prompt ||
+		config.properties.find((prop) => prop.id === 'prompt')?.value) as string;
+
 	const messageHistory: Message[] = [
-		{ role: 'system', content: 'You are a helpful assistant.' },
+		{
+			role: 'system',
+			content: systemPrompt,
+			...restProperties,
+		},
 	];
 	const outputs: ChatCompletion[] = [];
 
 	try {
 		for (const prompt of prompts) {
-			messageHistory.push({ role: 'user', content: prompt });
+			const imageUrls = extractImageUrls(prompt);
+			const base64Images = imageUrls.map((imagePath) => encodeImage(imagePath));
+			messageHistory.push({
+				role: 'user',
+				content: prompt,
+				images: base64Images,
+			});
 
 			const response = await ollama.chat({
 				model: model,
