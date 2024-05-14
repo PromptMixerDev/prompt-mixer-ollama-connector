@@ -34,6 +34,8 @@ export const config = {
 		'wizard-math:70b',
 		'openhermes',
 		'falcon',
+		'falcon2',
+		'falcon2:11b',
 		'openchat',
 		'codeup',
 		'stable-beluga',
