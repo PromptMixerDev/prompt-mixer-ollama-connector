@@ -1,4 +1,4 @@
-import ollama from 'ollama';
+import ollama, { ListResponse } from 'ollama';
 import { config } from './config';
 import * as fs from 'fs';
 
@@ -21,6 +21,21 @@ interface ConnectorResponse {
 interface ChatCompletion {
 	output: string;
 	stats: { model: string };
+}
+
+async function getDynamicModelList(): Promise<string[]> {
+	try {
+		const list: ListResponse = await (
+			await fetch('http://localhost:11434/api/tags')
+		).json();
+
+		const getModelNames = list.models.map((model) => model.name);
+
+		return getModelNames.length ? getModelNames : config.models;
+	} catch (error) {
+		console.error('Error in getDynamicModelList function:', error);
+		return config.models;
+	}
 }
 
 const mapToResponse = (outputs: ChatCompletion[]): ConnectorResponse => {
@@ -104,4 +119,4 @@ async function main(
 	}
 }
 
-export { main, config };
+export { main, config, getDynamicModelList };
