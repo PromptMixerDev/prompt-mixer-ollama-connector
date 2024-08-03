@@ -38,7 +38,7 @@
 		"husky": "^9.1.4",
 		"prettier": "^3.3.3",
 		"tslib": "2.6.3",
-		"typescript": "5.5.3"
+		"typescript": "5.5.4"
 	},
 	"dependencies": {
 		"esbuild-plugin-copy": "^2.1.1",
