@@ -30,7 +30,7 @@
 		"@types/node": "^24.0.1",
 		"@typescript-eslint/eslint-plugin": "8.34.1",
 		"@typescript-eslint/parser": "8.32.1",
-		"builtin-modules": "4.0.0",
+		"builtin-modules": "5.0.0",
 		"esbuild": "0.25.0",
 		"eslint": "9.29.0",
 		"eslint-config-prettier": "^10.0.1",
